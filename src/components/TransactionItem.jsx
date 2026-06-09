@@ -5,6 +5,17 @@ function TransactionItem({
   onEdit,
   onDelete,
 }) {
+  const handleDelete = () => {
+    const confirmed =
+      window.confirm(
+        "정말 삭제하시겠습니까?"
+      );
+
+    if (confirmed) {
+      onDelete(item.id);
+    }
+  };
+
   return (
     <div className="transaction-item">
       <div>
@@ -41,9 +52,7 @@ function TransactionItem({
         </button>
 
         <button
-          onClick={() =>
-            onDelete(item.id)
-          }
+          onClick={handleDelete}
         >
           삭제
         </button>
