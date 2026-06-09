@@ -1,19 +1,18 @@
-import React from 'react'
+import { formatCurrency } from "../utils/calculations";
 
-const SummaryCard = ({ income, expense }) => {
+function SummaryCard({
+  title,
+  value,
+}) {
   return (
-    <div>
-      <h2>현재 잔액</h2>
+    <div className="summary-card">
+      <h3>{title}</h3>
 
-      <p>총 수입 : {income.toLocaleString()}원</p>
-
-      <p>총 지출 : {expense.toLocaleString()}원</p>
-
-      <h3>
-        잔액 : {(income - expense).toLocaleString()}원
-      </h3>
+      <h2>
+        {formatCurrency(value)}원
+      </h2>
     </div>
   );
 }
 
-export default SummaryCard
+export default SummaryCard;

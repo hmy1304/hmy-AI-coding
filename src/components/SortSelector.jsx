@@ -1,14 +1,12 @@
-import React from 'react'
-
-const SortSelector = ({
-  sortType,
-  setSortType,
-}) => {
+function SortSelector({
+  sort,
+  setSort,
+}) {
   return (
     <select
-      value={sortType}
+      value={sort}
       onChange={(e) =>
-        setSortType(e.target.value)
+        setSort(e.target.value)
       }
     >
       <option value="latest">
@@ -27,7 +25,7 @@ const SortSelector = ({
         금액 낮은순
       </option>
     </select>
-  )
+  );
 }
 
-export default SortSelector
+export default SortSelector;

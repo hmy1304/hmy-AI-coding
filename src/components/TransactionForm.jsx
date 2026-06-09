@@ -1,36 +1,60 @@
-import React, { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
 
-const TransactionForm = ({
-  addTransaction,
+import {
+  incomeCategories,
+  expenseCategories,
+} from "../utils/categories";
+
+function TransactionForm({
+  onSubmit,
   editingItem,
-  updateTransaction,
-}) => {
-  const [form, setForm] = useState({
-    type: "expense",
-    amount: "",
-    category: "",
-    date: "",
-    memo: "",
-  })
+  cancelEdit,
+}) {
+  const [form, setForm] =
+    useState({
+      type: "expense",
+      amount: "",
+      category: "",
+      date: "",
+      memo: "",
+    });
 
   useEffect(() => {
     if (editingItem) {
       setForm(editingItem);
     }
-  }, [editingItem])
+  }, [editingItem]);
 
-  const handleSubmit = (e) => {
+  const handleChange = (
+    e
+  ) => {
+    setForm({
+      ...form,
+      [e.target.name]:
+        e.target.value,
+    });
+  };
+
+  const handleSubmit = (
+    e
+  ) => {
     e.preventDefault();
 
-    if (!form.amount || !form.date) {
-      return alert("필수 항목 입력");
+    if (
+      !form.amount ||
+      !form.date ||
+      !form.category
+    ) {
+      alert(
+        "필수 항목을 입력하세요."
+      );
+      return;
     }
 
-    if (editingItem) {
-      updateTransaction(form);
-    } else {
-      addTransaction(form);
-    }
+    onSubmit(form);
 
     setForm({
       type: "expense",
@@ -39,75 +63,90 @@ const TransactionForm = ({
       date: "",
       memo: "",
     });
-  }
+  };
+
+  const categories =
+    form.type === "income"
+      ? incomeCategories
+      : expenseCategories;
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      className="transaction-form"
+      onSubmit={handleSubmit}
+    >
       <select
+        name="type"
         value={form.type}
-        onChange={(e) =>
-          setForm({
-            ...form,
-            type: e.target.value,
-          })
-        }
+        onChange={handleChange}
       >
-        <option value="income">수입</option>
-        <option value="expense">지출</option>
+        <option value="income">
+          수입
+        </option>
+
+        <option value="expense">
+          지출
+        </option>
       </select>
 
       <input
+        name="amount"
         type="number"
         placeholder="금액"
         value={form.amount}
-        onChange={(e) =>
-          setForm({
-            ...form,
-            amount: e.target.value,
-          })
-        }
+        onChange={handleChange}
       />
 
-      <input
-        type="text"
-        placeholder="카테고리"
+      <select
+        name="category"
         value={form.category}
-        onChange={(e) =>
-          setForm({
-            ...form,
-            category: e.target.value,
-          })
-        }
-      />
+        onChange={handleChange}
+      >
+        <option value="">
+          카테고리 선택
+        </option>
+
+        {categories.map((cat) => (
+          <option
+            key={cat}
+            value={cat}
+          >
+            {cat}
+          </option>
+        ))}
+      </select>
 
       <input
         type="date"
+        name="date"
         value={form.date}
-        onChange={(e) =>
-          setForm({
-            ...form,
-            date: e.target.value,
-          })
-        }
+        onChange={handleChange}
       />
 
       <input
         type="text"
+        name="memo"
         placeholder="메모"
         value={form.memo}
-        onChange={(e) =>
-          setForm({
-            ...form,
-            memo: e.target.value,
-          })
-        }
+        onChange={handleChange}
       />
 
       <button type="submit">
-        {editingItem ? "수정" : "추가"}
+        {editingItem
+          ? "수정 완료"
+          : "등록"}
       </button>
+
+      {editingItem && (
+        <button
+          type="button"
+          onClick={cancelEdit}
+        >
+          취소
+        </button>
+      )}
     </form>
-  )
+  );
 }
 
-export default TransactionForm
+export default TransactionForm;
