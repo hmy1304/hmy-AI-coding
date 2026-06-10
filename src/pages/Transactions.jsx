@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import {
   useTransactions,
@@ -18,6 +18,8 @@ import {
 import "./Transactions.css"
 
 function Transactions() {
+  const formRef = useRef(null);
+
   const {
     transactions,
     addTransaction,
@@ -109,23 +111,41 @@ function Transactions() {
     ...expenseCategories,
   ];
 
+  useEffect(() => {
+    if (editingItem && formRef.current) {
+      formRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [editingItem]);
+
+  const handleEdit = (item) => {
+    setEditingItem(item);
+  };
+
   return (
     <div className="page transactions-page">
       <h1>거래 관리</h1>
 
-      <TransactionForm
-        onSubmit={
-          handleSubmit
-        }
-        editingItem={
-          editingItem
-        }
-        cancelEdit={() =>
-          setEditingItem(
-            null
-          )
-        }
-      />
+      <div 
+        ref={formRef} 
+        className="transaction-form-wrapper"
+      >
+        <TransactionForm
+          onSubmit={
+            handleSubmit
+          }
+          editingItem={
+            editingItem
+          }
+          cancelEdit={() =>
+            setEditingItem(
+              null
+            )
+          }
+        />
+      </div>
 
       <div className="toolbar">
         <SearchBar
@@ -156,7 +176,7 @@ function Transactions() {
           filteredTransactions
         }
         onEdit={
-          setEditingItem
+          handleEdit
         }
         onDelete={
           deleteTransaction

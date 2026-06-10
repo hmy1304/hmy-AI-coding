@@ -11,6 +11,10 @@
    Transaction Form
    ========================================================================== */
 
+  .transaction-form-wrapper {
+    scroll-margin-top: 100px;
+  }
+
 .transaction-form {
   background: var(--card);
 
