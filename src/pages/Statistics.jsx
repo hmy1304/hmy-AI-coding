@@ -193,8 +193,7 @@ function Statistics() {
   };
 
   const hasTransactionData =
-    totalIncome > 0 ||
-    totalExpense > 0;
+    transactions.length > 0;
 
   return (
     <div className="page statistics-page">
