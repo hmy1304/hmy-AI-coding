@@ -2,6 +2,7 @@ import { useTransactions } from "../context/TransactionContext";
 
 import SummaryCard from "../components/SummaryCard";
 import TransactionList from "../components/TransactionList";
+import "./Dashboard.css"
 
 function Dashboard() {
   const {
@@ -22,7 +23,7 @@ function Dashboard() {
       .slice(0, 5);
 
   return (
-    <div className="page">
+    <div className="page dashboard-page">
       <h1>대시보드</h1>
 
       <div className="summary-grid">
@@ -45,15 +46,17 @@ function Dashboard() {
       <section>
         <h2>최근 거래</h2>
 
-        <TransactionList
-          transactions={
-            recentTransactions
-          }
-          onEdit={() => {}}
-          onDelete={
-            deleteTransaction
-          }
-        />
+        {recentTransactions.length === 0 ? (
+          <div className="dashboard-empty">
+            아직 등록된 거래 내역이 없습니다.
+          </div>
+        ) : (
+          <TransactionList
+            transactions={recentTransactions}
+            onEdit={() => {}}
+            onDelete={deleteTransaction}
+          />
+        )}
       </section>
     </div>
   );

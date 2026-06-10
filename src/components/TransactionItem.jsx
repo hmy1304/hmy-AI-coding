@@ -1,4 +1,5 @@
 import { formatCurrency } from "../utils/calculations";
+import "./TransactionItem.css"
 
 function TransactionItem({
   item,
@@ -44,6 +45,7 @@ function TransactionItem({
         </h3>
 
         <button
+          className="edit-btn"
           onClick={() =>
             onEdit(item)
           }
@@ -52,6 +54,7 @@ function TransactionItem({
         </button>
 
         <button
+          className="delete-btn"
           onClick={handleDelete}
         >
           삭제

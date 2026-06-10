@@ -18,6 +18,7 @@ function ThemeToggle() {
 
   return (
     <button
+      className="theme-btn"
       onClick={() =>
         setDark(!dark)
       }

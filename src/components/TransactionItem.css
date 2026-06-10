@@ -1,0 +1,199 @@
+/* ==========================================================================
+   Transaction Item
+   ========================================================================== */
+
+.transaction-item {
+  background: var(--card);
+
+  padding: 20px;
+  margin-bottom: 15px;
+
+  border-radius: var(--radius);
+
+  box-shadow: var(--shadow);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 16px;
+}
+
+/* ==========================================================================
+   Transaction Info
+   ========================================================================== */
+
+.transaction-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.transaction-info h4 {
+  margin-bottom: 6px;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  word-break: break-word;
+}
+
+.transaction-info p {
+  margin-bottom: 4px;
+
+  color: var(--sub-text);
+
+  font-size: 0.95rem;
+
+  word-break: break-word;
+}
+
+.transaction-info p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Transaction Actions
+   ========================================================================== */
+
+.transaction-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Amount
+   ========================================================================== */
+
+.transaction-actions h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  margin-right: 8px;
+}
+
+.income {
+  color: var(--success);
+}
+
+.expense {
+  color: var(--danger);
+}
+
+/* ==========================================================================
+   Button Group
+   ========================================================================== */
+
+.transaction-actions button {
+  border: none;
+
+  padding: 8px 12px;
+
+  border-radius: 8px;
+
+  font-weight: 500;
+
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+}
+
+/* .action-buttons button {
+  border: none;
+
+  padding: 8px 12px;
+
+  border-radius: 8px;
+
+  font-weight: 500;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+} */
+
+/* .action-buttons button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+} */
+
+.edit-btn {
+  background: var(--primary);
+  color: white;
+}
+
+.delete-btn {
+  background: var(--danger);
+  color: white;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.edit-btn:focus,
+.delete-btn:focus {
+  outline: none;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(37, 99, 235, 0.2);
+}
+
+/* ==========================================================================
+   Tablet
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .transaction-item {
+    gap: 12px;
+  }
+
+  .transaction-actions h3 {
+    font-size: 1rem;
+  }
+}
+
+/* ==========================================================================
+   Mobile
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .transaction-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .transaction-actions {
+    width: 100%;
+
+    align-items: stretch;
+
+    border-top: 1px solid var(--border);
+
+    padding-top: 10px;
+  }
+
+  .transaction-actions h3 {
+    text-align: right;
+  }
+
+  .action-buttons {
+    width: 100%;
+
+    justify-content: stretch;
+  }
+
+  .action-buttons button {
+    flex: 1;
+  }
+}

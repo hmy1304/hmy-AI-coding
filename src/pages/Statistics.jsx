@@ -17,6 +17,8 @@ import {
   useTransactions,
 } from "../context/TransactionContext";
 
+import "./Statistics.css"
+
 ChartJS.register(
   ArcElement,
   Tooltip,
@@ -153,6 +155,7 @@ function Statistics() {
 
   const barOptions = {
     responsive: true,
+    maintainAspectRatio: false,
 
     plugins: {
       legend: {
@@ -190,7 +193,7 @@ function Statistics() {
   };
 
   return (
-    <div className="page">
+    <div className="page statistics-page">
       <h1>통계</h1>
 
       <section>
@@ -231,7 +234,9 @@ function Statistics() {
             표시할 통계 데이터가 없습니다.
           </p>
         ) : (
-          <Bar data={barData} options={barOptions}/>
+          <div className="bar-chart-container">
+            <Bar data={barData} options={barOptions}/>
+          </div>
         )}
       </section>
     </div>

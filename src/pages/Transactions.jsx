@@ -15,6 +15,8 @@ import {
   expenseCategories,
 } from "../utils/categories";
 
+import "./Transactions.css"
+
 function Transactions() {
   const {
     transactions,
@@ -108,7 +110,7 @@ function Transactions() {
   ];
 
   return (
-    <div className="page">
+    <div className="page transactions-page">
       <h1>거래 관리</h1>
 
       <TransactionForm

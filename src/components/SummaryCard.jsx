@@ -1,4 +1,5 @@
 import { formatCurrency } from "../utils/calculations";
+import "./SummaryCard.css"
 
 function SummaryCard({
   title,

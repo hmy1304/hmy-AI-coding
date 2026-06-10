@@ -1,0 +1,152 @@
+/* ==========================================================================
+   Transactions Page
+   ========================================================================== */
+
+.transactions-page {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Transaction Form
+   ========================================================================== */
+
+.transaction-form {
+  background: var(--card);
+
+  padding: 20px;
+
+  border-radius: var(--radius);
+
+  box-shadow: var(--shadow);
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(120px, 1fr));
+
+  gap: 12px;
+
+  margin-bottom: 25px;
+}
+
+.transaction-form button {
+  border: none;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  background: var(--primary);
+
+  color: white;
+
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.transaction-form button:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Toolbar
+   ========================================================================== */
+
+.toolbar {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  margin-bottom: 25px;
+}
+
+.toolbar input,
+.toolbar select {
+  flex: 1;
+
+  min-width: 0;
+}
+
+.toolbar input[type="text"] {
+  flex: 2;
+}
+
+/* ==========================================================================
+   Transaction List
+   ========================================================================== */
+
+.transaction-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Empty State
+   ========================================================================== */
+
+.transactions-empty {
+  text-align: center;
+
+  padding: 40px;
+
+  color: var(--sub-text);
+}
+
+/* ==========================================================================
+   Tablet
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .transaction-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .transaction-form button {
+    grid-column: span 2;
+  }
+
+  .toolbar {
+    display: grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    gap: 10px;
+  }
+
+  .toolbar input[type="text"] {
+    grid-column: span 2;
+  }
+}
+
+/* ==========================================================================
+   Mobile
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+  .transaction-form {
+    grid-template-columns: 1fr;
+  }
+
+  .transaction-form button {
+    grid-column: span 1;
+  }
+
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar input[type="text"] {
+    grid-column: span 1;
+  }
+}
