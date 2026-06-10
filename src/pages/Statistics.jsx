@@ -80,7 +80,7 @@ function Statistics() {
 
   const pieOptions = {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
 
     plugins: {
       legend: {
@@ -196,12 +196,7 @@ function Statistics() {
       <section>
         <h2>수입 / 지출 비율</h2>
 
-        <div
-          style={{
-            width: "400px",
-            margin: "0 auto",
-          }}
-        >
+        <div className="chart-container">
           <Pie data={incomeExpenseData} options={pieOptions}/>
         </div>
       </section>

@@ -18,7 +18,8 @@ function TransactionItem({
 
   return (
     <div className="transaction-item">
-      <div>
+
+      <div className="transaction-info">
         <h4>{item.memo}</h4>
 
         <p>{item.category}</p>
@@ -26,7 +27,8 @@ function TransactionItem({
         <p>{item.date}</p>
       </div>
 
-      <div>
+      <div className="transaction-actions">
+
         <h3
           className={
             item.type === "income"
@@ -37,9 +39,7 @@ function TransactionItem({
           {item.type === "income"
             ? "+"
             : "-"}
-          {formatCurrency(
-            item.amount
-          )}
+          {formatCurrency(item.amount)}
           원
         </h3>
 
@@ -56,7 +56,9 @@ function TransactionItem({
         >
           삭제
         </button>
+
       </div>
+
     </div>
   );
 }
