@@ -11,9 +11,9 @@
    Transaction Form
    ========================================================================== */
 
-  .transaction-form-wrapper {
-    scroll-margin-top: 100px;
-  }
+.transaction-form-wrapper {
+  scroll-margin-top: 100px;
+}
 
 .transaction-form {
   background: var(--card);
@@ -81,6 +81,22 @@
 
 .toolbar input[type="text"] {
   flex: 2;
+}
+
+.edit-mode-banner {
+  grid-column: 1 / -1;
+
+  padding: 12px 16px;
+
+  border-radius: 10px;
+
+  background: rgba(37, 99, 235, 0.1);
+
+  border: 1px solid rgba(37, 99, 235, 0.2);
+
+  color: var(--primary);
+
+  font-weight: 600;
 }
 
 /* ==========================================================================

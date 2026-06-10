@@ -1,7 +1,7 @@
 import {
   useEffect,
   useState,
-  useRef
+  useRef,
 } from "react";
 
 import {
@@ -14,7 +14,8 @@ function TransactionForm({
   editingItem,
   cancelEdit,
 }) {
-  const memoInputRef = useRef(null);
+  const amountInputRef =
+    useRef(null);
 
   const [form, setForm] =
     useState({
@@ -28,6 +29,17 @@ function TransactionForm({
   useEffect(() => {
     if (editingItem) {
       setForm(editingItem);
+    }
+  }, [editingItem]);
+
+  useEffect(() => {
+    if (
+      editingItem &&
+      amountInputRef.current
+    ) {
+      amountInputRef.current.focus();
+
+      amountInputRef.current.select();
     }
   }, [editingItem]);
 
@@ -73,22 +85,18 @@ function TransactionForm({
       ? incomeCategories
       : expenseCategories;
 
-  useEffect(() => {
-    if (
-      editingItem &&
-      memoInputRef.current
-    ) {
-      memoInputRef.current.focus();
-
-      memoInputRef.current.select();
-    }
-  }, [editingItem]);
-
   return (
     <form
       className="transaction-form"
       onSubmit={handleSubmit}
     >
+
+      {editingItem && (
+        <div className="edit-mode-banner">
+          ✏️ 거래 정보를 수정하고 있습니다.
+        </div>
+      )}
+
       <select
         name="type"
         value={form.type}
@@ -104,7 +112,7 @@ function TransactionForm({
       </select>
 
       <input
-        ref={memoInputRef}
+        ref={amountInputRef}
         name="amount"
         type="number"
         placeholder="금액"
