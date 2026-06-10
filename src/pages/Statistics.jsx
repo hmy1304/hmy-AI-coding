@@ -192,6 +192,10 @@ function Statistics() {
     ],
   };
 
+  const hasTransactionData =
+    totalIncome > 0 ||
+    totalExpense > 0;
+
   return (
     <div className="page statistics-page">
       <h1>통계</h1>
@@ -199,9 +203,15 @@ function Statistics() {
       <section>
         <h2>수입 / 지출 비율</h2>
 
-        <div className="chart-container">
-          <Pie data={incomeExpenseData} options={pieOptions}/>
-        </div>
+        {!hasTransactionData ? (
+          <p>
+            아직 등록된 수입/지출 내역이 없습니다.
+          </p>
+        ) : (
+          <div className="chart-container">
+            <Pie data={incomeExpenseData} options={pieOptions}/>
+          </div>
+        )}
       </section>
 
       <section>
