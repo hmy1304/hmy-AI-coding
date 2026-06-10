@@ -1,6 +1,7 @@
 import {
   useEffect,
   useState,
+  useRef
 } from "react";
 
 import {
@@ -13,6 +14,8 @@ function TransactionForm({
   editingItem,
   cancelEdit,
 }) {
+  const memoInputRef = useRef(null);
+
   const [form, setForm] =
     useState({
       type: "expense",
@@ -70,6 +73,17 @@ function TransactionForm({
       ? incomeCategories
       : expenseCategories;
 
+  useEffect(() => {
+    if (
+      editingItem &&
+      memoInputRef.current
+    ) {
+      memoInputRef.current.focus();
+
+      memoInputRef.current.select();
+    }
+  }, [editingItem]);
+
   return (
     <form
       className="transaction-form"
@@ -90,6 +104,7 @@ function TransactionForm({
       </select>
 
       <input
+        ref={memoInputRef}
         name="amount"
         type="number"
         placeholder="금액"
