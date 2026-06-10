@@ -29,6 +29,8 @@
 
   --radius: 16px;
   --transition: 0.3s;
+
+  --header-height: 90px;
 }
 
 body.dark {

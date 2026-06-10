@@ -12,7 +12,8 @@
    ========================================================================== */
 
 .transaction-form-wrapper {
-  scroll-margin-top: 100px;
+  scroll-margin-top:
+    calc(var(--header-height) + 90px);
 }
 
 .transaction-form {
