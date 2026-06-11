@@ -25,10 +25,10 @@ function Transactions() {
     addTransaction,
     updateTransaction,
     deleteTransaction,
-  } = useTransactions();
 
-  const [editingItem, setEditingItem] =
-    useState(null);
+    editingItem,
+    setEditingItem,
+  } = useTransactions();
 
   const [search, setSearch] =
     useState("");

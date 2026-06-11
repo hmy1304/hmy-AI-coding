@@ -47,6 +47,29 @@
 }
 
 /* ==========================================================================
+   Accordion Button
+   ========================================================================== */
+
+.accordion-btn {
+  display: block;
+  margin: 12px auto 0;
+
+  border: none;
+  background: transparent;
+
+  color: var(--primary);
+
+  font-size: 2rem;
+  cursor: pointer;
+
+  transition: transform 0.3s ease;
+}
+
+.accordion-btn.open {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
    Tablet
    ========================================================================== */
 

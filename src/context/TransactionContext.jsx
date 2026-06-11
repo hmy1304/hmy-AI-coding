@@ -2,6 +2,7 @@ import {
   createContext,
   useContext,
   useMemo,
+  useState
 } from "react";
 
 import { v4 as uuidv4 } from "uuid";
@@ -19,6 +20,9 @@ export function TransactionProvider({
       "moneybook-transactions",
       []
     );
+  
+  const [editingItem, setEditingItem] =
+    useState(null);
 
   // CREATE
   const addTransaction = (
@@ -104,6 +108,9 @@ export function TransactionProvider({
     addTransaction,
     updateTransaction,
     deleteTransaction,
+
+    editingItem,
+    setEditingItem,
 
     totalIncome,
     totalExpense,
