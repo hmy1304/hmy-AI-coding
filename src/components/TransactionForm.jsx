@@ -97,78 +97,82 @@ function TransactionForm({
         </div>
       )}
 
-      <select
-        name="type"
-        value={form.type}
-        onChange={handleChange}
-      >
-        <option value="income">
-          수입
-        </option>
+      <div className="form-fields">
 
-        <option value="expense">
-          지출
-        </option>
-      </select>
-
-      <input
-        ref={amountInputRef}
-        name="amount"
-        type="number"
-        placeholder="금액"
-        value={form.amount}
-        onChange={handleChange}
-      />
-
-      <select
-        name="category"
-        value={form.category}
-        onChange={handleChange}
-      >
-        <option value="">
-          카테고리 선택
-        </option>
-
-        {categories.map((cat) => (
-          <option
-            key={cat}
-            value={cat}
-          >
-            {cat}
-          </option>
-        ))}
-      </select>
-
-      <input
-        type="date"
-        name="date"
-        value={form.date}
-        onChange={handleChange}
-      />
-
-      <input
-        type="text"
-        name="memo"
-        placeholder="메모"
-        value={form.memo}
-        onChange={handleChange}
-      />
-
-      <button type="submit">
-        {editingItem
-          ? "수정 완료"
-          : "등록"}
-      </button>
-
-      {editingItem && (
-        <button
-          type="button"
-          className="cancel-btn"
-          onClick={cancelEdit}
+        <select
+          name="type"
+          value={form.type}
+          onChange={handleChange}
         >
-          취소
+          <option value="income">수입</option>
+          <option value="expense">지출</option>
+        </select>
+
+        <input
+          ref={amountInputRef}
+          name="amount"
+          type="number"
+          placeholder="금액"
+          value={form.amount}
+          onChange={handleChange}
+        />
+
+        <select
+          name="category"
+          value={form.category}
+          onChange={handleChange}
+        >
+          <option value="">
+            카테고리 선택
+          </option>
+
+          {categories.map((cat) => (
+            <option
+              key={cat}
+              value={cat}
+            >
+              {cat}
+            </option>
+          ))}
+        </select>
+
+        <input
+          type="date"
+          name="date"
+          value={form.date}
+          onChange={handleChange}
+        />
+
+        <input
+          type="text"
+          name="memo"
+          className="memo-input"
+          placeholder="메모"
+          value={form.memo}
+          onChange={handleChange}
+        />
+
+      </div>
+
+      <div className="form-actions">
+
+        <button type="submit">
+          {editingItem
+            ? "수정 완료"
+            : "등록"}
         </button>
-      )}
+
+        {editingItem && (
+          <button
+            type="button"
+            className="cancel-btn"
+            onClick={cancelEdit}
+          >
+            취소
+          </button>
+        )}
+
+      </div>
     </form>
   );
 }
