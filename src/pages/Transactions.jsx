@@ -9,6 +9,7 @@ import TransactionList from "../components/TransactionList";
 import SearchBar from "../components/SearchBar";
 import SortSelector from "../components/SortSelector";
 import CategoryFilter from "../components/CategoryFilter";
+import TypeFilter from "../components/TypeFilter"
 
 import {
   incomeCategories,
@@ -39,6 +40,9 @@ function Transactions() {
   const [category, setCategory] =
     useState("");
 
+  const [type, setType] =
+    useState("");
+
   const handleSubmit = (
     formData
   ) => {
@@ -67,12 +71,16 @@ function Transactions() {
 
         const matchesCategory =
           !category ||
-          item.category ===
-            category;
+          item.category === category;
+
+        const matchesType =
+          !type ||
+          item.type === type;
 
         return (
           matchesSearch &&
-          matchesCategory
+          matchesCategory &&
+          matchesType
         );
       })
       .sort((a, b) => {
@@ -106,10 +114,26 @@ function Transactions() {
         }
       });
 
-  const allCategories = [
-    ...incomeCategories,
-    ...expenseCategories,
-  ];
+  const filterCategories =
+    type === "income"
+      ? incomeCategories
+      : type === "expense"
+      ? expenseCategories
+      : (() => {
+          const categories = [
+            ...new Set([
+              ...incomeCategories,
+              ...expenseCategories,
+            ]),
+          ];
+
+          return [
+            ...categories.filter(
+              (cat) => cat !== "기타"
+            ),
+            "기타",
+          ];
+        })();
 
   useEffect(() => {
     if (editingItem && formRef.current) {
@@ -123,6 +147,10 @@ function Transactions() {
   const handleEdit = (item) => {
     setEditingItem(item);
   };
+
+  useEffect(() => {
+    setCategory("");
+  }, [type]);
 
   return (
     <div className="page transactions-page">
@@ -160,14 +188,16 @@ function Transactions() {
           setSort={setSort}
         />
 
+        <TypeFilter
+          type={type}
+          setType={setType}
+        />
+
         <CategoryFilter
           category={category}
-          setCategory={
-            setCategory
-          }
-          categories={
-            allCategories
-          }
+          setCategory={setCategory}
+          categories={filterCategories}
+          type={type}
         />
       </div>
 

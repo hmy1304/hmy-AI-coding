@@ -59,6 +59,14 @@
   transform: translateY(-1px);
 }
 
+.cancel-btn {
+  background: var(--danger) !important;
+}
+
+.cancel-btn:hover {
+  background: #dc2626 !important;
+}
+
 /* ==========================================================================
    Toolbar
    ========================================================================== */

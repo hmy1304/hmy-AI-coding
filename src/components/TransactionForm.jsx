@@ -163,6 +163,7 @@ function TransactionForm({
       {editingItem && (
         <button
           type="button"
+          className="cancel-btn"
           onClick={cancelEdit}
         >
           취소
